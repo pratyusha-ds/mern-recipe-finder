@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import bgImage from "../assets/bg-image.jpg";
 import { apiUrl } from "../../config";
+import Cookies from "js-cookie";
 
 const Loginpage = () => {
   const [username, setUsername] = useState("");
@@ -17,20 +18,28 @@ const Loginpage = () => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
-      credentials: "include",
     })
       .then((response) => {
         if (response.ok) return response.json();
         else throw new Error("Login failed");
       })
-      .then(() => {
+      .then((data) => {
+        const token = data.token;
+
+        Cookies.set("token", token, {
+          expires: 1 / 24,
+          path: "",
+          secure: true,
+          sameSite: "None",
+        });
+
         setUsername("");
         setPassword("");
         console.log("Navigating to home");
         navigate("/home");
       })
       .catch((err) => {
-        console.error("Login failed");
+        console.error("Login failed", err);
       });
   };
 
