@@ -26,6 +26,7 @@ const Loginpage = () => {
       .then(() => {
         setUsername("");
         setPassword("");
+        console.log("Navigating to home");
         navigate("/home");
       })
       .catch((err) => {
