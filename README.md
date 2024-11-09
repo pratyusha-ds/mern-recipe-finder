@@ -55,7 +55,7 @@ In the root of the backend directory, create a .env file and add your environmen
 MONGO_URI=your-mongodb-uri  
 PORT=5000  
 SECRET=your-jwt-secret  
-API_KEY=your-spoonacular-api-key  
+API_KEY=your-spoonacular-api-key
 
 4. **Run the Application**
 
