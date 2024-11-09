@@ -12,11 +12,6 @@ import { frontendUrl } from "./config.js";
 dotenv.config();
 
 const app = express();
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-app.use("/images", express.static(path.join(__dirname, "/public/images")));
-app.use(express.json());
 app.use(
   cors({
     origin: frontendUrl,
@@ -24,6 +19,12 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use("/images", express.static(path.join(__dirname, "/public/images")));
+app.use(express.json());
+
 app.use(cookieParser());
 
 mongoose
