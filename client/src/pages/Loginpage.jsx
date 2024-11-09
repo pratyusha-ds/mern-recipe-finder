@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import bgImage from "../assets/bg-image.jpg";
+import { apiUrl } from "../../config";
 
 const Loginpage = () => {
   const [username, setUsername] = useState("");
@@ -12,7 +13,7 @@ const Loginpage = () => {
   const handleSubmit = (ev) => {
     ev.preventDefault();
 
-    fetch("http://localhost:5000/auth/login", {
+    fetch(`${apiUrl}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),

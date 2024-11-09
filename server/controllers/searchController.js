@@ -1,4 +1,5 @@
 import axios from "axios";
+import { backendUrl } from "../config";
 
 export const complexSearch = async (req, res) => {
   const { query, cuisine, diet } = req.query;
@@ -24,12 +25,12 @@ export const complexSearch = async (req, res) => {
         if (recipe.image) {
           const isValid = await validateImageUrl(recipe.image);
           if (!isValid) {
-            recipe.image = "https://localhost/5000/images/Placeholder.jpg";
+            recipe.image = `${backendUrl}/images/Placeholder.jpg`;
             console.log("Recipes with images:", recipe.image);
             console.log("Image URL:", recipe.image);
           }
         } else {
-          recipe.image = "https://localhost/5000/images/Placeholder.jpg";
+          recipe.image = `${backendUrl}/images/Placeholder.jpg`;
           console.log("Image URL:", recipe.image);
         }
         return recipe;

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { apiUrl } from "../../config";
 
 const Complexsearch = () => {
   const [query, setQuery] = useState("");
@@ -10,7 +11,7 @@ const Complexsearch = () => {
 
   const handleSearch = () => {
     fetch(
-      `http://localhost:5000/api/complexSearch?query=${query}&cuisine=${cuisine}&diet=${diet}`,
+      `${apiUrl}/api/complexSearch?query=${query}&cuisine=${cuisine}&diet=${diet}`,
       {
         method: "GET",
         credentials: "include",

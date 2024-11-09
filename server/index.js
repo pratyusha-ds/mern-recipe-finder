@@ -7,6 +7,7 @@ import searchRoutes from "./routes/searchRoutes.js";
 import cookieParser from "cookie-parser";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
+import { frontendUrl } from "./config.js";
 
 dotenv.config();
 
@@ -18,7 +19,7 @@ app.use("/images", express.static(path.join(__dirname, "/public/images")));
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: frontendUrl,
     credentials: true,
   })
 );
